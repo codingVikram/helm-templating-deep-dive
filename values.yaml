@@ -1,7 +1,7 @@
 # @param customeName allows to set a custom resource name in k8s
 ## Defaults to {{ .Release.Name }}-{{ .Chart.Name }}
 
-customName: 'laminar-aixm-geometry'
+customName: ''
 
 
 # @param replicaCount Number of Nginx replicas to deploy
@@ -22,12 +22,18 @@ image:
 containerPorts:
   http: 80
 
-## Settings for NGINX service
+## Settings for NGINX services
+## Services is a map with the following schema
 
-## @param service.enabled Whether to deploy the service altogether or not
-## @param service.type The type of service in front of the NGINX pods
-## @param service.port The port where the service is receiving request
-service:
-  enabled: true
-  type: ClusterIP
-  port: 80
+## @param services["*"] The type of service in front of the NGINX pods
+## @param services["*"] The port where the service is receiving request
+
+services:  
+  svc2:
+    type: NodePort
+    port: 30007
+  svc1:
+    type: ClusterIP
+    port: 80
+
+
