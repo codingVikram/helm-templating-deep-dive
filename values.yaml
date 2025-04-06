@@ -1,5 +1,7 @@
 # @param replicaCount Number of Nginx replicas to deploy
-replicaCount: 3
+replicaCount: 2
+
+
 
 
 ## @param image.name Nginx image name to use
@@ -13,3 +15,13 @@ image:
 ## @param containerPorts.http
 containerPorts:
   http: 80
+
+## Settings for NGINX service
+
+## @param service.enabled Whether to deploy the service altogether or not
+## @param service.type The type of service in front of the NGINX pods
+## @param service.port The port where the service is receiving request
+service:
+  enabled: false
+  type: ClusterIP
+  port: 80
