@@ -1,20 +1,31 @@
 # @param customeName allows to set a custom resource name in k8s
 ## Defaults to {{ .Release.Name }}-{{ .Chart.Name }}
 
-customName: ''
+customName: 'laminar-job-control-api'
 
 
 # @param replicaCount Number of Nginx replicas to deploy
 replicaCount: 2
 
 
-
+## Settings for NGINX image
 
 ## @param image.name Nginx image name to use
 ## @param image.tag NGinx image tag to use
 image:
   name: nginx
   tag:  "1.27.0"
+
+
+## Settings for NGINX container securiotyContext
+
+## @param securityContext.enabled
+## @param securityContext.runAsUser
+## @param securityContext.fsGroup 
+securityContext:
+  enabled:  true
+  runAsUser: 0
+  fsGroup: 2000
 
 ## NGINX container ports
 ##
